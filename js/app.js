@@ -69,7 +69,8 @@ function setTheme(theme) {
 // RENDER / CONFIG
 // ============================================
 async function onConfigChange(config) {
-  const c = { ...defaultConfig, ...config };
+  const incomingConfig = config || {};
+  const c = { ...defaultConfig, ...incomingConfig };
 
   // Text content
   const splashName = document.getElementById("splash-name");
@@ -135,15 +136,23 @@ async function onConfigChange(config) {
 
   // Colors
   const root = document.documentElement;
-  if (c.background_color) root.style.setProperty("--bg", c.background_color);
-  if (c.surface_color) root.style.setProperty("--surface", c.surface_color);
-  if (c.text_color) root.style.setProperty("--text", c.text_color);
-  if (c.accent_color) {
+  if (Object.hasOwn(incomingConfig, "background_color") && c.background_color) {
+    root.style.setProperty("--bg", c.background_color);
+  }
+  if (Object.hasOwn(incomingConfig, "surface_color") && c.surface_color) {
+    root.style.setProperty("--surface", c.surface_color);
+  }
+  if (Object.hasOwn(incomingConfig, "text_color") && c.text_color) {
+    root.style.setProperty("--text", c.text_color);
+  }
+  if (Object.hasOwn(incomingConfig, "accent_color") && c.accent_color) {
     root.style.setProperty("--accent", c.accent_color);
     root.style.setProperty("--accent-hover", adjustColor(c.accent_color, -15));
     root.style.setProperty("--accent-light", adjustColor(c.accent_color, 80, 0.15));
   }
-  if (c.muted_color) root.style.setProperty("--muted", c.muted_color);
+  if (Object.hasOwn(incomingConfig, "muted_color") && c.muted_color) {
+    root.style.setProperty("--muted", c.muted_color);
+  }
 }
 
 function adjustColor(hex, amount, opacity = 1) {
