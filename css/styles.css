@@ -1,3 +1,4 @@
+/* Sección: Variables base */
 :root {
   --bg: #fafafa;
   --surface: #ffffff;
@@ -14,6 +15,7 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Sección: Variables para tema oscuro */
 [data-theme="dark"] {
   --bg: #0f0f0f;
   --surface: #1a1a1a;
@@ -27,10 +29,12 @@
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* Sección: Reset general */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { height: 100%; scroll-behavior: smooth; }
 
+/* Sección: Accesibilidad (movimiento reducido) */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -49,7 +53,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Splash Screen */
+/* Sección: Pantalla de bienvenida */
 .splash {
   position: fixed;
   inset: 0;
@@ -85,7 +89,7 @@ body {
 }
 @keyframes splashFade { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 
-/* Main Content */
+/* Sección: Contenido principal */
 .main-wrapper {
   width: 100%;
   min-height: 100%;
@@ -97,7 +101,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Header */
+/* Sección: Encabezado */
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -145,10 +149,10 @@ body {
 }
 .header-cta:hover { background: var(--accent-hover); }
 
-/* Container */
+/* Sección: Contenedor */
 .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
 
-/* Hero */
+/* Sección: Presentación */
 .hero { padding: 100px 0 60px; text-align: center; }
 
 .hero-photo {
@@ -199,11 +203,11 @@ body {
 .btn-ghost { background: transparent; color: var(--accent); padding: 12px; }
 .btn-ghost:hover { background: var(--accent-light); }
 
-/* Sections */
+/* Sección: Secciones generales */
 .section { padding: 60px 0; }
 .section-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 24px; color: var(--text); }
 
-/* About */
+/* Sección: Sobre mí */
 .about-text { color: var(--muted); margin-bottom: 32px; font-size: 1rem; line-height: 1.8; }
 
 .zones-title {
@@ -226,7 +230,7 @@ body {
   font-weight: 600;
 }
 
-/* Services */
+/* Sección: Servicios */
 .services-grid { display: flex; flex-direction: column; gap: 16px; }
 
 .service-card {
@@ -250,7 +254,7 @@ body {
 .service-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
 .service-desc { color: var(--muted); font-size: 0.9375rem; }
 
-/* Contact */
+/* Sección: Contacto */
 .contact-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -275,7 +279,7 @@ body {
 .contact-card svg { width: 28px; height: 28px; fill: var(--accent); }
 .contact-card span { font-size: 0.8125rem; color: var(--muted); font-weight: 500; }
 
-/* Form */
+/* Sección: Formulario */
 .form-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -302,7 +306,7 @@ body {
 textarea.form-input { min-height: 120px; resize: vertical; }
 .form-submit { width: 100%; margin-top: 8px; }
 
-/* WhatsApp Float */
+/* Sección: Botón flotante de WhatsApp */
 .whatsapp-float {
   position: fixed;
   bottom: 24px;
@@ -323,7 +327,7 @@ textarea.form-input { min-height: 120px; resize: vertical; }
 .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
 @media (min-width: 768px) { .whatsapp-float { display: none; } }
 
-/* Footer */
+/* Sección: Pie de página */
 .footer {
   text-align: center;
   padding: 40px 20px;
@@ -332,7 +336,7 @@ textarea.form-input { min-height: 120px; resize: vertical; }
   border-top: 1px solid var(--border);
 }
 
-/* Desktop */
+/* Sección: Ajustes para escritorio */
 @media (min-width: 768px) {
   .hero-buttons { flex-direction: row; justify-content: center; }
   .btn { flex: 1; max-width: 180px; }

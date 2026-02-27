@@ -1,13 +1,13 @@
 // ============================================
-// DATOS EDITABLES - Modificar aquí
+// SECCIÓN: DATOS EDITABLES (MODIFICA AQUÍ)
 // ============================================
 const defaultConfig = {
-  nombre: "María González",
+  nombre: "Isabel Muñoz Escobar",
   titulo: "Corredora de Propiedades",
   telefono: "+56 9 1234 5678",
   whatsapp: "56912345678",
   email: "contacto@ejemplo.com",
-  instagram: "mariagonzalez.propiedades",
+  instagram: "isabelmunozescobar.propiedades",
   tagline: "Tu próximo hogar comienza aquí",
   bio: "Con dedicación y profesionalismo, te acompaño en cada paso del proceso inmobiliario. Mi enfoque está en entender tus necesidades para encontrar la propiedad perfecta o conseguir el mejor resultado en la venta de tu inmueble. Trabajo con transparencia, comunicación constante y un servicio personalizado que marca la diferencia.",
   zones: ["Concepción", "San Pedro", "Talcahuano", "Hualpén", "Chiguayante"],
@@ -25,7 +25,7 @@ const defaultConfig = {
   muted_color: "#6b7280"
 };
 
-// Service icons SVG paths
+// Sección: Íconos SVG para servicios
 const serviceIcons = [
   "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z",
   "M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z",
@@ -35,7 +35,7 @@ const serviceIcons = [
 ];
 
 // ============================================
-// THEME MANAGEMENT
+// SECCIÓN: GESTIÓN DE TEMA
 // ============================================
 function getSystemTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -51,7 +51,7 @@ function setTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
-// Apply theme ASAP (defer runs after parsing, but html starts in dark anyway)
+// Aplicar tema lo antes posible (defer se ejecuta tras parsear el HTML)
 (() => {
   const stored = getStoredTheme();
   const effective = stored === "system" ? getSystemTheme() : stored;
@@ -66,12 +66,13 @@ function setTheme(theme) {
 })();
 
 // ============================================
-// RENDER / CONFIG
+// SECCIÓN: RENDERIZADO Y CONFIGURACIÓN
 // ============================================
 async function onConfigChange(config) {
-  const c = { ...defaultConfig, ...config };
+  const incomingConfig = config || {};
+  const c = { ...defaultConfig, ...incomingConfig };
 
-  // Text content
+  // Sección: Contenido de texto
   const splashName = document.getElementById("splash-name");
   const headerName = document.getElementById("header-name");
   const heroName = document.getElementById("hero-name");
@@ -88,7 +89,7 @@ async function onConfigChange(config) {
   if (aboutBio) aboutBio.textContent = c.bio;
   if (footerText) footerText.textContent = `© ${new Date().getFullYear()} ${c.nombre} · Todos los derechos reservados`;
 
-  // Contact links
+  // Sección: Enlaces de contacto
   const btnCall = document.getElementById("btn-call");
   const btnWhatsapp = document.getElementById("btn-whatsapp");
   const btnEmail = document.getElementById("btn-email");
@@ -109,13 +110,13 @@ async function onConfigChange(config) {
   if (contactIg) contactIg.href = `https://instagram.com/${c.instagram}`;
   if (waFloat) waFloat.href = `https://wa.me/${c.whatsapp}`;
 
-  // Zones
+  // Sección: Zonas
   const zonesList = document.getElementById("zones-list");
   if (zonesList && Array.isArray(c.zones)) {
     zonesList.innerHTML = c.zones.map((zone) => `<span class="zone-chip">${zone}</span>`).join("");
   }
 
-  // Services
+  // Sección: Servicios
   const servicesGrid = document.getElementById("services-grid");
   if (servicesGrid && Array.isArray(c.services)) {
     servicesGrid.innerHTML = c.services
@@ -133,17 +134,25 @@ async function onConfigChange(config) {
       .join("");
   }
 
-  // Colors
+  // Sección: Colores personalizados
   const root = document.documentElement;
-  if (c.background_color) root.style.setProperty("--bg", c.background_color);
-  if (c.surface_color) root.style.setProperty("--surface", c.surface_color);
-  if (c.text_color) root.style.setProperty("--text", c.text_color);
-  if (c.accent_color) {
+  if (Object.hasOwn(incomingConfig, "background_color") && c.background_color) {
+    root.style.setProperty("--bg", c.background_color);
+  }
+  if (Object.hasOwn(incomingConfig, "surface_color") && c.surface_color) {
+    root.style.setProperty("--surface", c.surface_color);
+  }
+  if (Object.hasOwn(incomingConfig, "text_color") && c.text_color) {
+    root.style.setProperty("--text", c.text_color);
+  }
+  if (Object.hasOwn(incomingConfig, "accent_color") && c.accent_color) {
     root.style.setProperty("--accent", c.accent_color);
     root.style.setProperty("--accent-hover", adjustColor(c.accent_color, -15));
     root.style.setProperty("--accent-light", adjustColor(c.accent_color, 80, 0.15));
   }
-  if (c.muted_color) root.style.setProperty("--muted", c.muted_color);
+  if (Object.hasOwn(incomingConfig, "muted_color") && c.muted_color) {
+    root.style.setProperty("--muted", c.muted_color);
+  }
 }
 
 function adjustColor(hex, amount, opacity = 1) {
@@ -185,7 +194,7 @@ function mapToEditPanelValues(config) {
   ]);
 }
 
-// Initialize Element SDK (si existe)
+// Sección: Inicialización de Element SDK (si existe)
 if (window.elementSdk) {
   window.elementSdk.init({
     defaultConfig,
@@ -196,10 +205,10 @@ if (window.elementSdk) {
 }
 
 // ============================================
-// DOM READY
+// SECCIÓN: DOM LISTO
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
-  // Theme toggle
+  // Sección: Botón de cambio de tema
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
@@ -211,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Contact form -> WhatsApp
+  // Sección: Formulario de contacto hacia WhatsApp
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
@@ -227,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Smooth scroll
+  // Sección: Desplazamiento suave
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
       e.preventDefault();
@@ -236,6 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Initial render
+  // Sección: Renderizado inicial
   onConfigChange(window.elementSdk ? window.elementSdk.config : defaultConfig);
 });
