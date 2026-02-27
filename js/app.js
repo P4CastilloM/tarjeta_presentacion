@@ -4,9 +4,9 @@
 const defaultConfig = {
   nombre: "Isabel Muñoz Escobar",
   titulo: "Corredora de Propiedades",
-  telefono: "+56 9 1234 5678",
-  whatsapp: "56912345678",
-  email: "contacto@ejemplo.com",
+  telefono: "+56 9 4172 1501",
+  whatsapp: "56941721501",
+  email: "Inmobiliaria.tasacion.Isabel@gmail.com",
   instagram: "isabelmunozescobar.propiedades",
   tagline: "Tu próximo hogar comienza aquí",
   bio: "Con dedicación y profesionalismo, te acompaño en cada paso del proceso inmobiliario. Mi enfoque está en entender tus necesidades para encontrar la propiedad perfecta o conseguir el mejor resultado en la venta de tu inmueble. Trabajo con transparencia, comunicación constante y un servicio personalizado que marca la diferencia.",
