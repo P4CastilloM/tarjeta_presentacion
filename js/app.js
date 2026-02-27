@@ -246,5 +246,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Sección: Renderizado inicial
-  onConfigChange(window.elementSdk ? window.elementSdk.config : defaultConfig);
+  onConfigChange(window.elementSdk ? window.elementSdk.config : {});
 });
